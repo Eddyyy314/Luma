@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMA — Beauty, Refined.</title>
+  <meta name="description" content="LUMA è un brand beauty premium: skincare essenziale, rituali moderni e prodotti selezionati con spedizione rapida in Europa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ivory:#f7f2ea;
+      --cream:#fbf8f3;
+      --sand:#e7d9c9;
+      --taupe:#a69584;
+      --ink:#141311;
+      --muted:#6f675f;
+      --line:rgba(20,19,17,.12);
+      --gold:#c8a46a;
+      --white:#fffaf5;
+      --shadow:0 28px 80px rgba(20,19,17,.12);
+      --serif:'Playfair Display', Georgia, serif;
+      --sans:'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--sans);
+      background:var(--cream);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+    img{display:block;max-width:100%}
+
+    .announcement{
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--ink);
+      color:var(--cream);
+      font-size:11px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:400;
+    }
+
+    .nav{
+      position:fixed;
+      top:34px;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(1120px,calc(100% - 32px));
+      z-index:30;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 22px;
+      background:rgba(251,248,243,.68);
+      backdrop-filter:blur(22px);
+      border:1px solid rgba(255,255,255,.5);
+      box-shadow:0 12px 40px rgba(20,19,17,.05);
+      border-radius:999px;
+      transition:.35s ease;
+    }
+    .logo{
+      font-family:var(--serif);
+      font-size:24px;
+      letter-spacing:.18em;
+      font-weight:500;
+    }
+    .logo span{color:var(--gold)}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:rgba(20,19,17,.72);
+      transition:.25s ease;
+    }
+    .nav-links a:hover{color:var(--ink)}
+    .nav-actions{display:flex;gap:14px;align-items:center}
+    .icon-btn{font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+    .menu-btn{display:none}
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:grid;
+      place-items:end start;
+      padding:160px clamp(22px,6vw,84px) 70px;
+      overflow:hidden;
+      background:var(--ivory);
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(20,19,17,.58) 0%,rgba(20,19,17,.18) 42%,rgba(20,19,17,.02) 100%),
+        url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1800&q=90') center/cover;
+      transform:scale(1.02);
+      animation:slowZoom 16s ease-in-out infinite alternate;
+    }
+    @keyframes slowZoom{to{transform:scale(1.08)}}
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:720px;
+      color:var(--cream);
+    }
+    .eyebrow{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      margin-bottom:22px;
+      color:rgba(255,250,245,.78);
+    }
+    h1{
+      font-family:var(--serif);
+      font-size:clamp(64px,11vw,142px);
+      line-height:.88;
+      font-weight:400;
+      letter-spacing:-.055em;
+      max-width:760px;
+    }
+    .hero-content p{
+      margin-top:30px;
+      max-width:430px;
+      font-size:16px;
+      line-height:1.85;
+      font-weight:300;
+      color:rgba(255,250,245,.82);
+    }
+    .cta-row{display:flex;gap:14px;align-items:center;margin-top:38px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 28px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      transition:.32s ease;
+    }
+    .btn-dark{background:var(--cream);color:var(--ink)}
+    .btn-dark:hover{transform:translateY(-2px);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+    .btn-ghost{border:1px solid rgba(255,250,245,.48);color:var(--cream)}
+    .btn-ghost:hover{background:rgba(255,250,245,.12)}
+
+    .section{padding:110px clamp(22px,6vw,84px)}
+    .section-intro{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:60px;
+      align-items:end;
+      max-width:1180px;
+      margin:0 auto 58px;
+    }
+    .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--taupe);margin-bottom:18px}
+    h2{
+      font-family:var(--serif);
+      font-size:clamp(42px,6vw,84px);
+      line-height:.96;
+      font-weight:400;
+      letter-spacing:-.045em;
+    }
+    .section-intro p{color:var(--muted);line-height:1.85;font-size:15px;font-weight:300;max-width:420px}
+
+    .editorial-grid{
+      max-width:1180px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .editorial-card{
+      min-height:620px;
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      background:var(--sand);
+      isolation:isolate;
+    }
+    .editorial-card img{
+      width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:1s ease;
+    }
+    .editorial-card:hover img{transform:scale(1.045)}
+    .editorial-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(20,19,17,.45))}
+    .editorial-copy{position:absolute;left:34px;right:34px;bottom:34px;z-index:2;color:var(--cream)}
+    .editorial-copy h3{font-family:var(--serif);font-size:38px;font-weight:400;letter-spacing:-.03em;margin-bottom:10px}
+    .editorial-copy p{font-size:14px;line-height:1.75;color:rgba(255,250,245,.78);max-width:330px;font-weight:300}
+
+    .products{background:#fffaf5}
+    .product-grid{
+      max-width:1180px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .product{
+      background:var(--cream);
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      transition:.35s ease;
+    }
+    .product:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+    .product-image{aspect-ratio:4/5;overflow:hidden;background:var(--ivory)}
+    .product-image img{width:100%;height:100%;object-fit:cover;transition:.65s ease}
+    .product:hover img{transform:scale(1.05)}
+    .product-info{padding:22px}
+    .product-info .meta{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);margin-bottom:9px}
+    .product-info h3{font-family:var(--serif);font-size:25px;font-weight:400;letter-spacing:-.025em;margin-bottom:10px}
+    .price-row{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:14px}
+    .add{margin-top:18px;width:100%;height:44px;border:1px solid var(--ink);border-radius:999px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;transition:.25s ease}
+    .add:hover{background:var(--ink);color:var(--cream)}
+
+    .story{
+      background:var(--ink);
+      color:var(--cream);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      min-height:780px;
+      padding:0;
+    }
+    .story-image{overflow:hidden}
+    .story-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
+    .story-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(42px,7vw,100px)}
+    .story-copy .kicker{color:var(--gold)}
+    .story-copy h2{color:var(--cream);max-width:520px}
+    .story-copy p{margin-top:28px;color:rgba(255,250,245,.7);line-height:1.9;font-weight:300;max-width:500px}
+    .ingredient-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}
+    .ingredient{border-top:1px solid rgba(255,250,245,.18);padding-top:18px}
+    .ingredient strong{display:block;font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:6px}
+    .ingredient span{font-size:13px;color:rgba(255,250,245,.55);line-height:1.7}
+
+    .tiktok-strip{
+      max-width:1180px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.2fr repeat(3,1fr);
+      gap:16px;
+      align-items:stretch;
+    }
+    .tiktok-copy{padding:42px;border:1px solid var(--line);border-radius:34px;background:var(--ivory);display:flex;flex-direction:column;justify-content:space-between}
+    .tiktok-copy h2{font-size:clamp(38px,5vw,64px)}
+    .tiktok-copy p{color:var(--muted);line-height:1.8;margin-top:20px;font-weight:300}
+    .video-card{position:relative;min-height:460px;border-radius:34px;overflow:hidden;background:var(--sand)}
+    .video-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .video-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(20,19,17,.55))}
+    .video-meta{position:absolute;left:22px;bottom:22px;z-index:2;color:var(--cream);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+
+    .reviews{background:var(--ivory)}
+    .review-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .review{background:rgba(255,250,245,.72);border:1px solid rgba(20,19,17,.09);border-radius:30px;padding:34px}
+    .stars{color:var(--gold);letter-spacing:.18em;font-size:12px;margin-bottom:22px}
+    .review p{font-family:var(--serif);font-size:24px;line-height:1.35;letter-spacing:-.02em;color:var(--ink)}
+    .review span{display:block;margin-top:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe)}
+
+    .product-page{
+      padding:140px clamp(22px,6vw,84px) 110px;
+      background:#fffaf5;
+    }
+    .product-layout{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:sticky;top:120px}
+    .gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:30px;background:var(--ivory)}
+    .buy-panel{padding-top:20px}
+    .buy-panel h2{font-size:clamp(46px,6vw,78px)}
+    .buy-panel .desc{margin-top:22px;color:var(--muted);line-height:1.85;font-weight:300;max-width:480px}
+    .price{font-family:var(--serif);font-size:34px;margin-top:26px}
+    .purchase-box{margin-top:30px;border:1px solid var(--line);border-radius:32px;padding:24px;background:var(--cream)}
+    .qty-row{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--line)}
+    .cart-main{height:56px;width:100%;border-radius:999px;background:var(--ink);color:var(--cream);margin-top:22px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:.25s ease}
+    .cart-main:hover{transform:translateY(-2px);box-shadow:0 18px 50px rgba(20,19,17,.16)}
+    .details{margin-top:36px;border-top:1px solid var(--line)}
+    .detail{border-bottom:1px solid var(--line);padding:22px 0}
+    .detail h4{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+    .detail p{color:var(--muted);line-height:1.8;font-size:14px;font-weight:300}
+
+    .newsletter{
+      padding:110px clamp(22px,6vw,84px);
+      text-align:center;
+      background:var(--cream);
+    }
+    .newsletter h2{max-width:780px;margin:auto}
+    .newsletter p{margin:24px auto 34px;max-width:440px;color:var(--muted);line-height:1.8;font-weight:300}
+    .email-form{display:flex;max-width:520px;margin:auto;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+    .email-form input{flex:1;border:0;background:transparent;padding:0 22px;outline:0;font:inherit;color:var(--ink)}
+    .email-form button{height:54px;padding:0 28px;background:var(--ink);color:var(--cream);font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;margin:4px}
+
+    footer{
+      background:var(--ink);
+      color:var(--cream);
+      padding:66px clamp(22px,6vw,84px) 30px;
+    }
+    .footer-inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:44px}
+    footer .logo{display:block;margin-bottom:18px}
+    footer p{max-width:290px;color:rgba(255,250,245,.55);line-height:1.75;font-weight:300;font-size:14px}
+    footer h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+    footer a{display:block;color:rgba(255,250,245,.55);font-size:13px;margin-bottom:10px}
+    .copyright{max-width:1180px;margin:48px auto 0;padding-top:24px;border-top:1px solid rgba(255,250,245,.12);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,250,245,.35)}
+
+    .mobile-nav{
+      position:fixed;inset:0;background:var(--cream);z-index:60;padding:32px;display:none;flex-direction:column;gap:26px
+    }
+    .mobile-nav.open{display:flex}
+    .mobile-nav .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+    .mobile-nav a{font-family:var(--serif);font-size:44px;letter-spacing:-.04em}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:.8s cubic-bezier(.2,.7,.1,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:980px){
+      .nav-links,.nav-actions .icon-btn{display:none}.menu-btn{display:block}
+      .section-intro,.editorial-grid,.story,.product-layout{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .tiktok-strip{grid-template-columns:1fr 1fr}.tiktok-copy{grid-column:1/-1}
+      .review-grid{grid-template-columns:1fr}
+      .footer-inner{grid-template-columns:1fr 1fr}
+      .gallery{position:static}
+    }
+    @media(max-width:620px){
+      .announcement{font-size:9px;padding:0 14px;text-align:center}
+      .nav{top:44px;width:calc(100% - 20px);padding:14px 18px}.logo{font-size:21px}
+      .hero{padding:150px 22px 44px;min-height:92vh}.hero::before{background:linear-gradient(180deg,rgba(20,19,17,.10),rgba(20,19,17,.72)),url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=90') center/cover}
+      h1{font-size:72px}.hero-content p{font-size:15px}
+      .section{padding:76px 18px}.editorial-card{min-height:520px;border-radius:26px}.editorial-copy{left:24px;right:24px;bottom:24px}
+      .product-grid{grid-template-columns:1fr}.tiktok-strip{grid-template-columns:1fr}.video-card{min-height:520px}
+      .story-copy{padding:72px 22px}.ingredient-list{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.product-page{padding:130px 18px 80px}
+      .email-form{border-radius:24px;flex-direction:column;padding:6px}.email-form input{height:54px}.footer-inner{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Spedizione rapida in Europa · Beauty rituals for modern skin</div>
+
+  <nav class="nav">
+    <a class="logo" href="#top">LUMA<span>.</span></a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#rituals">Rituali</a>
+      <a href="#story">Ingredienti</a>
+      <a href="#product">Bestseller</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn">Search</button>
+      <button class="icon-btn">Cart · 0</button>
+      <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <div class="top"><a class="logo">LUMA<span>.</span></a><button onclick="toggleMenu()">Chiudi</button></div>
+    <a onclick="toggleMenu()" href="#shop">Shop</a>
+    <a onclick="toggleMenu()" href="#rituals">Rituali</a>
+    <a onclick="toggleMenu()" href="#story">Ingredienti</a>
+    <a onclick="toggleMenu()" href="#product">Bestseller</a>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content reveal">
+        <div class="eyebrow">LUMA Skin Rituals</div>
+        <h1>Beauty,<br>Refined.</h1>
+        <p>Skincare essenziale, luminosa e moderna. Prodotti selezionati per rituali quotidiani che sembrano semplici, ma cambiano tutto.</p>
+        <div class="cta-row">
+          <a class="btn btn-dark" href="#shop">Scopri Luma</a>
+          <a class="btn btn-ghost" href="#product">Vedi Bestseller</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="rituals">
+      <div class="section-intro reveal">
+        <div>
+          <div class="kicker">Quiet luxury skincare</div>
+          <h2>Una routine più pulita. Una pelle più luminosa.</h2>
+        </div>
+        <p>LUMA unisce estetica editoriale, ingredienti desiderabili e prodotti beauty virali in un’esperienza premium, senza sembrare un sito dropshipping.</p>
+      </div>
+      <div class="editorial-grid">
+        <article class="editorial-card reveal">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1100&q=90" alt="Texture skincare premium">
+          <div class="editorial-copy">
+            <h3>Daily glow</h3>
+            <p>Texture leggere, finish luminoso e rituali facili da inserire ogni mattina.</p>
+          </div>
+        </article>
+        <article class="editorial-card reveal">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1100&q=90" alt="Beauty editorial campaign">
+          <div class="editorial-copy">
+            <h3>Soft skin era</h3>
+            <p>Prodotti beauty contemporanei, pensati per un’estetica pulita e fotografabile.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section products" id="shop">
+      <div class="section-intro reveal">
+        <div>
+          <div class="kicker">Best sellers</div>
+          <h2>Prodotti essenziali. Desiderio immediato.</h2>
+        </div>
+        <p>Una selezione beauty minimale: pochi prodotti, scelti bene, con un’immagine premium e un posizionamento chiaro.</p>
+      </div>
+      <div class="product-grid">
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=90" alt="Luma overnight mask"></div>
+          <div class="product-info"><div class="meta">Hydration ritual</div><h3>Overnight Dew Mask</h3><div class="price-row"><span>€34,90</span><span>★★★★★</span></div><button class="add">Aggiungi</button></div>
+        </article>
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=90" alt="Luma peptide lip treatment"></div>
+          <div class="product-info"><div class="meta">Lip care</div><h3>Peptide Lip Veil</h3><div class="price-row"><span>€22,90</span><span>★★★★★</span></div><button class="add">Aggiungi</button></div>
+        </article>
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=90" alt="Luma glow serum"></div>
+          <div class="product-info"><div class="meta">Glow serum</div><h3>Glass Skin Drops</h3><div class="price-row"><span>€39,90</span><span>★★★★★</span></div><button class="add">Aggiungi</button></div>
+        </article>
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=90" alt="Luma facial roller"></div>
+          <div class="product-info"><div class="meta">Cooling ritual</div><h3>Ice Sculpt Roller</h3><div class="price-row"><span>€29,90</span><span>★★★★☆</span></div><button class="add">Aggiungi</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-image reveal"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=90" alt="Pelle luminosa beauty campaign"></div>
+      <div class="story-copy reveal">
+        <div class="kicker">Ingredient-led beauty</div>
+        <h2>Formule che sembrano leggere. Risultati che si notano.</h2>
+        <p>Il posizionamento di LUMA è semplice: skincare premium, estetica pulita, comunicazione elegante. Niente caos, niente urgenze finte, niente vibe economica.</p>
+        <div class="ingredient-list">
+          <div class="ingredient"><strong>Peptides</strong><span>Supportano una pelle dall’aspetto più compatto e levigato.</span></div>
+          <div class="ingredient"><strong>Niacinamide</strong><span>Aiuta a uniformare il tono e valorizzare la luminosità naturale.</span></div>
+          <div class="ingredient"><strong>Hyaluronic</strong><span>Idratazione visibile e sensazione di pelle piena.</span></div>
+          <div class="ingredient"><strong>Cica</strong><span>Comfort, delicatezza e routine adatta alla pelle sensibile.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="tiktok-strip">
+        <div class="tiktok-copy reveal">
+          <div>
+            <div class="kicker">Seen softly online</div>
+            <h2>Social, ma senza urlare.</h2>
+            <p>LUMA può vivere su TikTok e Instagram senza sembrare un prodotto cheap: contenuti puliti, routine reali, texture e risultati.</p>
+          </div>
+          <a class="btn" style="border:1px solid var(--ink);width:max-content;margin-top:32px" href="#shop">Shop the edit</a>
+        </div>
+        <div class="video-card reveal"><img src="https://images.unsplash.com/photo-1621784563330-caee0b138a00?auto=format&fit=crop&w=700&q=90" alt="Skincare social content"><div class="video-meta">1.8M views</div></div>
+        <div class="video-card reveal"><img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=700&q=90" alt="Beauty routine"><div class="video-meta">Routine glow</div></div>
+        <div class="video-card reveal"><img src="https://images.unsplash.com/photo-1600428877878-1a0fd85beda4?auto=format&fit=crop&w=700&q=90" alt="Product texture"><div class="video-meta">Texture test</div></div>
+      </div>
+    </section>
+
+    <section class="product-page" id="product">
+      <div class="product-layout">
+        <div class="gallery reveal">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=90" alt="Overnight Dew Mask">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=90" alt="Skincare texture">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=90" alt="Beauty product">
+          <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=90" alt="Beauty model">
+        </div>
+        <div class="buy-panel reveal">
+          <div class="kicker">Bestseller ritual</div>
+          <h2>Overnight Dew Mask</h2>
+          <p class="desc">Maschera notte effetto glow, pensata per dare alla pelle un aspetto più idratato, compatto e luminoso al risveglio.</p>
+          <div class="price">€34,90</div>
+          <div class="purchase-box">
+            <div class="qty-row"><span>Quantità</span><strong>1</strong></div>
+            <button class="cart-main">Aggiungi al carrello</button>
+          </div>
+          <div class="details">
+            <div class="detail"><h4>Come si usa</h4><p>Applicare la sera su pelle pulita come ultimo step della routine. Lasciare agire durante la notte.</p></div>
+            <div class="detail"><h4>Spedizione</h4><p>Spedizione rapida in Europa. Tracking incluso e packaging protettivo.</p></div>
+            <div class="detail"><h4>Perché piace</h4><p>Texture morbida, look premium, risultato visivo immediato e comunicazione perfetta per contenuti social.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews">
+      <div class="section-intro reveal" style="grid-template-columns:1fr;text-align:center;max-width:800px">
+        <div><div class="kicker">Customer notes</div><h2>Più editoriale. Più credibile. Più desiderabile.</h2></div>
+      </div>
+      <div class="review-grid">
+        <article class="review reveal"><div class="stars">★★★★★</div><p>“Sembra un prodotto da Sephora. Packaging e sito fanno subito premium.”</p><span>Chiara · Milano</span></article>
+        <article class="review reveal"><div class="stars">★★★★★</div><p>“Pulito, elegante, zero effetto dropshipping. Finalmente un beauty brand che respira.”</p><span>Sofia · Roma</span></article>
+        <article class="review reveal"><div class="stars">★★★★★</div><p>“La direzione visiva è la cosa che mi ha convinta. Sembra già un brand famoso.”</p><span>Martina · Torino</span></article>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="kicker reveal">Join the ritual</div>
+      <h2 class="reveal">La beauty routine inizia prima ancora del prodotto.</h2>
+      <p class="reveal">Ricevi drop, offerte e contenuti beauty premium. Poche email, solo quando vale la pena.</p>
+      <form class="email-form reveal" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="La tua email" />
+        <button>Iscriviti</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a class="logo">LUMA<span>.</span></a>
+        <p>Luxury skincare rituals for modern skin. Minimal, luminous, essential.</p>
+      </div>
+      <div><h4>Shop</h4><a href="#shop">Best sellers</a><a href="#product">Overnight Mask</a><a href="#rituals">Rituali</a></div>
+      <div><h4>Supporto</h4><a>Contatti</a><a>Spedizioni</a><a>Resi</a></div>
+      <div><h4>Social</h4><a>Instagram</a><a>TikTok</a><a>Pinterest</a></div>
+    </div>
+    <div class="copyright">© 2026 LUMA. Beauty, refined.</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible') })
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    function toggleMenu(){ document.getElementById('mobileNav').classList.toggle('open'); }
+
+    document.querySelectorAll('.add, .cart-main').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const original = btn.textContent;
+        btn.textContent = 'Aggiunto ✓';
+        setTimeout(()=>btn.textContent = original, 1200);
+      })
+    });
+  </script>
+</body>
+</html>
